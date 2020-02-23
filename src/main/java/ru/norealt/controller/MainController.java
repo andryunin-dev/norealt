@@ -1,11 +1,13 @@
 package ru.norealt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.norealt.domain.Message;
+import ru.norealt.domain.User;
 import ru.norealt.repo.MessageRepo;
 
 import java.util.Map;
@@ -13,12 +15,11 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-
     @Autowired
     private MessageRepo messageRepo;
 
     @GetMapping("/")
-    public String greeting() {
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
@@ -34,12 +35,13 @@ public class MainController {
 
     @PostMapping("/main")
     public String add(
+            @AuthenticationPrincipal User user,
             @RequestParam String text,
             @RequestParam String tag,
             Map<String, Object> model
     ) {
         //сохраняем в БД
-        Message message = new Message(text, tag);
+        Message message = new Message(text, tag, user);
         messageRepo.save(message);
 
         //получить весь список из БД
