@@ -57,7 +57,12 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/main")
+    @GetMapping("/messageAdd")
+    public String messageAdd() {
+        return "messageAdd";
+    }
+
+    @PostMapping("/messageAdd")
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String text,
@@ -89,6 +94,6 @@ public class MainController {
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages", messages);
 
-        return "main";
+        return "redirect:/main";
     }
 }
