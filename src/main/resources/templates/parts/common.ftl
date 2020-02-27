@@ -29,7 +29,9 @@
 
     <body>
         <#include "navbar.ftl">
-        <div class="container mt-5 pt-5 mb-3">
+        <div class=""></div>
+<#--        <div class="container mt-5 pt-5 mb-3">-->
+        <div class="container mt-3" >
             <#nested>
         </div>
         <#include "footer.ftl">

@@ -1,7 +1,8 @@
 <#include "security.ftl">
 <#macro login path isRegisterForm>
     <!-- Default form login -->
-    <div class="card col-xl-6 col-lg-7 col-md-9 col-sm-12 mx-auto text-center form p-0">
+    <div class="card col-xl-6 col-lg-7 col-md-9 col-sm-12 mx-auto text-center form p-0
+    mt-xl-5 mt-lg-5 mt-md-5 mt-sm-5 mt-3 ">
         <form class="text-center p-xl-5 p-lg-5 p-md-5 p-sm-5 py-4 px-3"
               action="${path}"
               method="post">

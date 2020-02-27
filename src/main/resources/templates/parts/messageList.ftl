@@ -1,9 +1,9 @@
 <#include "security.ftl">
-
-<div class="card-columns" id="message-list">
-
+<#--<div class="card-deck" id="message-list">-->
+<div class="row">
     <#list messages as message>
-        <div class="card card-cascade" data-id="${message.id}">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 ">
+        <div class="card mb-3">
             <div>
                 <#if message.filename?has_content>
                     <div class="view view-cascade overlay">
@@ -40,6 +40,7 @@
             </div>
 
         </div>
+    </div>
     <#else>
         No message
     </#list>

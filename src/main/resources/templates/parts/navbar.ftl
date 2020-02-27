@@ -2,7 +2,7 @@
 <#import "login.ftl" as l>
 
 <!--Navbar -->
-<nav class="mb-1 navbar fixed-top navbar-expand-lg navbar-dark blue-gradient">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark blue-gradient">
     <div class="container">
 
         <a class="navbar-brand" href="/">No Realt</a>
@@ -79,6 +79,11 @@
 
         </div>
 
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-dark blue-gradient">
+    <div class="container">
+        <a class="navbar-brand" href="/">No Realt</a>
     </div>
 </nav>
 <!--/.Navbar -->
