@@ -9,10 +9,13 @@
 
             <p class="h4 mb-4"><#if !isRegisterForm>Вход<#else>Регистрация</#if></p>
 
-            <!-- Email -->
-            <#--        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">-->
             <!-- Username -->
             <input type="text" name="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Имя пользователя">
+
+            <!-- Email -->
+            <#if isRegisterForm>
+            <input type="email" name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+            </#if>
 
             <!-- Password -->
             <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Пароль">
