@@ -14,4 +14,5 @@
         <input type="hidden" value="${_csrf.token}" name="_csrf">
         <button type="submit">Save</button>
     </form>
+
 </@c.page>
