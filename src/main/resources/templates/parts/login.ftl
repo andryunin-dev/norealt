@@ -10,16 +10,59 @@
             <p class="h4 mb-4"><#if !isRegisterForm>Вход<#else>Регистрация</#if></p>
 
             <!-- Username -->
-            <input type="text" name="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Имя пользователя">
+            <div class="mb-4">
+                <input type="text" name="username" value="<#if user??>${user.username}</#if>"
+                       id="defaultLoginFormEmail"
+                       class="form-control ${(passwordError??)?string('is-invalid', '')}"
+                       placeholder="Имя пользователя" />
+                <#if usernameError??>
+                    <div class="invalid-feedback">
+                        ${usernameError}
+                    </div>
+                </#if>
+            </div>
 
             <!-- Email -->
             <#if isRegisterForm>
-            <input type="email" name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+            <div class="mb-4">
+                <input type="email" name="email" value="<#if user??>${user.email}</#if>"
+                   id="defaultLoginFormEmail"
+                   class="form-control ${(emailError??)?string('is-invalid', '')}"
+                   placeholder="some@some.com">
+                <#if emailError??>
+                    <div class="invalid-feedback">
+                        ${emailError}
+                    </div>
+                </#if>
+            </div>
             </#if>
 
             <!-- Password -->
-            <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Пароль">
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            <div class="mb-4">
+                <input type="password" name="password" id="defaultLoginFormPassword"
+                       class="form-control ${(passwordError??)?string('is-invalid', '')}"
+                       placeholder="Пароль">
+                <#if passwordError??>
+                    <div class="invalid-feedback">
+                        ${passwordError}
+                    </div>
+                </#if>
+            </div>
+
+            <!-- Password2 -->
+            <#if isRegisterForm>
+            <div class="mb-4">
+                <input type="password" name="password2" id="defaultLoginFormPassword2"
+                       class="form-control ${(password2Error??)?string('is-invalid', '')}"
+                       placeholder="Повторите пароль">
+                <#if password2Error??>
+                    <div class="invalid-feedback">
+                        ${password2Error}
+                    </div>
+                </#if>
+            </div>
+            </#if>
+
 
             <#if !isRegisterForm>
             <div class="d-flex justify-content-around">
@@ -38,6 +81,7 @@
             </#if>
 
             <!-- Sign in button -->
+            <input type="hidden" name="_csrf" value="${_csrf.token}" />
             <button class="btn btn-info btn-block my-4" type="submit"><#if !isRegisterForm>Войти<#else>Зарегистрироваться</#if></button>
 
             <!-- Register -->

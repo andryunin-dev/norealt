@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.norealt.domain.Message;
 import ru.norealt.domain.User;
 import ru.norealt.repo.MessageRepo;
+import ru.norealt.service.SaveService;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -26,6 +29,9 @@ public class MainController {
 
     @Value("${upload.path}")
     private String uploadPath;
+
+    @Autowired
+    private SaveService saveService;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -65,35 +71,42 @@ public class MainController {
     @PostMapping("/messageAdd")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam String text,
-            @RequestParam String tag,
-            Map<String, Object> model,
+            @Valid Message message,
+            BindingResult bindingResult,
+            Model model,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
-        //сохраняем в БД
-        Message message = new Message(text, tag, user);
 
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
+        message.setAuthor(user);
 
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs();
-            }
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
 
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("message", message);
 
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
+            //добавить временный редирект на страницу ошибки
+//            return "redirect:/messageAdd";
+            return "messageAdd";
 
-            message.setFilename(resultFilename);
+        } else {
+            saveService.save(user, message, file);
+
+            //очистить форму после успешной валидации
+            model.addAttribute("message", null);
+
+            //сохраняем в БД
+            messageRepo.save(message);
+
         }
-
-        messageRepo.save(message);
 
         //получить весь список из БД
         Iterable<Message> messages = messageRepo.findAll();
-        model.put("messages", messages);
+        model.addAttribute("messages", messages);
 
         return "redirect:/main";
+
+
+
     }
 }
