@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import ru.norealt.domain.User;
+import ru.norealt.domain.dto.CaptchaResponseDto;
 import ru.norealt.service.UserService;
 
 import javax.validation.Valid;
@@ -20,8 +21,17 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
+
+    private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
+
     @Autowired
     private UserService userService;
+
+    @Value("${recaptcha.secret}")
+    private String secret;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping("/registration")
     public String registration() {
@@ -31,18 +41,18 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(
             @RequestParam("password2") String passwordConfirm,
-            //@RequestParam("g-recaptcha-response") String captchaResponce,
+            @RequestParam("g-recaptcha-response") String captchaResponce,
             @Valid User user,
             BindingResult bindingResult,
             Model model
     ) {
 
-//        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-//        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
-//
-//        if (!response.isSuccess()) {
-//            model.addAttribute("captchaError", "Fill captcha");
-//        }
+        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
+        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+
+        if (!response.isSuccess()) {
+            model.addAttribute("captchaError", "Fill captcha");
+        }
 
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
 
@@ -55,9 +65,9 @@ public class RegistrationController {
         }
 
         if (    isConfirmEmpty ||
-                bindingResult.hasErrors()||
-                model.containsAttribute("passwordError")
-                //!response.isSuccess()
+                bindingResult.hasErrors() ||
+                model.containsAttribute("passwordError") ||
+                !response.isSuccess()
         ) {
             Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
 

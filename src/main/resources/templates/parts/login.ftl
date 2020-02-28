@@ -63,6 +63,18 @@
             </div>
             </#if>
 
+            <!-- recaptcha -->
+            <#if isRegisterForm>
+            <div class="mb-4">
+                <div class="g-recaptcha" data-sitekey="6LcjyMAUAAAAABy8qsBXe4ETeIRTq6SB2sF-RgiH"></div>
+                <#if captchaError??>
+                    <div class="alert alert-danger" role="alert">
+                        ${captchaError}
+                    </div>
+                </#if>
+            </div>
+            </#if>
+
 
             <#if !isRegisterForm>
             <div class="d-flex justify-content-around">
