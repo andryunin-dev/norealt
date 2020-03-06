@@ -51,8 +51,7 @@
                         <div class="dropdown-menu dropdown-menu-lg-right  dropdown-info"
                              aria-labelledby="navbarDropdownMenuLink-55">
                             <a class="dropdown-item" href="/user/profile">Profile</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="/user-messages/${currentUserId}">My messages</a>
                             <@l.logout />
                         </div>
                     </li>

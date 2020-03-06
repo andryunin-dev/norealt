@@ -22,10 +22,9 @@
             <div class="card-body card-body-cascade text-center">
                 <h4 class="card-title">
                     <strong>
-<#--                        <a href="/user-messages/${message.author.id!"null or missing"}">-->
-<#--                            ${message.authorName!"null or missing"}-->
-                            ${message.authorName}
-<#--                        </a>-->
+                        <a href="/user-messages/${message.author.id!"null or missing"}">
+                            ${message.authorName!"null or missing"}
+                        </a>
                     </strong>
                 </h4>
                 <h6 class="font-weight-bold indigo-text py-2">Тема: ${message.tag}</h6>
@@ -34,9 +33,9 @@
 
             <div class="card-footer text-muted text-center">
                 id: ${message.id}
-<#--                <#if message.author.id == currentUserId || isAdmin>-->
-<#--                    <#include "buttonEditDelete.ftl" />-->
-<#--                </#if>-->
+                <#if message.author.id == currentUserId || isAdmin>
+                    <#include "edit_delete.ftl" />
+                </#if>
             </div>
 
         </div>

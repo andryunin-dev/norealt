@@ -14,5 +14,6 @@ public interface MessageRepo extends CrudRepository<Message, Long> {
     //имя метода составляется из документации Spring JPA
     List<Message> findByTextContainingIgnoreCase(String text);
 
+    Iterable<Message> findAllById(Long id);
 }
 
