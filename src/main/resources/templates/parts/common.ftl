@@ -12,6 +12,9 @@
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
         <link href="/static/css/mdb.min.css" rel="stylesheet">
+        <!-- Material Design Table -->
+        <link href="/static/css/addons/datatables.min.css" rel="stylesheet">
+        <link href="/static/css/addons/datatables-select.min.css" rel="stylesheet">
         <!-- Your custom styles (optional) -->
         <link href="/static/css/style.css" rel="stylesheet">
         <!-- SCRIPTS -->
@@ -20,11 +23,15 @@
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="/static/js/popper.min.js"></script>
         <script type="text/javascript" src="/static/js/footer.js"></script>
-
-
-<#--        <script src="https://code.jquery.com/jquery-2.0.3.js"></script>-->
-<#--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />-->
-
+        <!-- Material Design Table -->
+        <script type="text/javascript" src="/static/js/addons/datatables.min.js"></script>
+        <script type="text/javascript" src="/static/js/addons/datatables-select.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dtBasicExample').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+            });
+        </script>
     </head>
 
     <body>
