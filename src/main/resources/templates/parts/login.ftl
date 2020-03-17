@@ -37,6 +37,21 @@
             </div>
             </#if>
 
+            <!-- Phone -->
+            <#if isRegisterForm>
+                <div class="mb-4">
+                    <input type="text" name="phone" value="<#if user??>${user.phone}</#if>"
+                           id="defaultLoginFormEmail"
+                           class="form-control ${(phoneError??)?string('is-invalid', '')}"
+                           placeholder="+7(987)654-32-10">
+                    <#if phoneError??>
+                        <div class="invalid-feedback">
+                            ${phoneError}
+                        </div>
+                    </#if>
+                </div>
+            </#if>
+
             <!-- Password -->
             <div class="mb-4">
                 <input type="password" name="password" id="defaultLoginFormPassword"

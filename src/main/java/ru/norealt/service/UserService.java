@@ -12,6 +12,7 @@ import ru.norealt.domain.Role;
 import ru.norealt.domain.User;
 import ru.norealt.repo.UserRepo;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,11 @@ public class UserService implements UserDetailsService {
         return userRepo.findByUsername(username);
     }
 
+    public void addLastVisit(User user) {
+        user.setLastVisit(LocalDateTime.now().toString());
+        userRepo.save(user);
+    }
+
     public boolean addUser(User user) {
 
         User userFromDb = userRepo.findByUsername(user.getUsername());
@@ -50,6 +56,7 @@ public class UserService implements UserDetailsService {
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRegistrationDate(LocalDateTime.now().toLocalDate().toString());
 
         userRepo.save(user);
 
@@ -138,4 +145,5 @@ public class UserService implements UserDetailsService {
             sendMessage(user);
         }
     }
+
 }
