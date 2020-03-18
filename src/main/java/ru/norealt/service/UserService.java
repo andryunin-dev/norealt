@@ -2,6 +2,11 @@ package ru.norealt.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,9 +35,16 @@ public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepo.findByEmail(email);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Bad");
+        }
+
+        return user;
     }
 
     public void addLastVisit(User user) {
@@ -42,17 +54,17 @@ public class UserService implements UserDetailsService {
 
     public boolean addUser(User user) {
 
-        User userFromDb = userRepo.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
-            return false;
-        }
-        //проверка email в БД
-//        User emailFromDb = userRepo.findByEmail(user.getEmail());
-//        if (emailFromDb != null) {
+//        User userFromDb = userRepo.findByUsername(user.getUsername());
+//        if (userFromDb != null) {
 //            return false;
 //        }
-        user.setActive(false);
+//        проверка email в БД
+        User emailFromDb = userRepo.findByEmail(user.getEmail());
+        if (emailFromDb != null) {
+            return false;
+        }
+//        user.setActive(false);
+        user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -60,7 +72,7 @@ public class UserService implements UserDetailsService {
 
         userRepo.save(user);
 
-        sendMessage(user);
+//        sendMessage(user);
 
         return true;
     }

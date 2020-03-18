@@ -26,23 +26,23 @@
                     <a class="nav-link" href="/user">User List</a>
                 </li>
                 </#if>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">Dropdown
-                    </a>
-                    <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink-555">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+<#--                <li class="nav-item dropdown">-->
+<#--                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"-->
+<#--                       aria-haspopup="true" aria-expanded="false">Dropdown-->
+<#--                    </a>-->
+<#--                    <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink-555">-->
+<#--                        <a class="dropdown-item" href="#">Action</a>-->
+<#--                        <a class="dropdown-item" href="#">Another action</a>-->
+<#--                        <a class="dropdown-item" href="#">Something else here</a>-->
+<#--                    </div>-->
+<#--                </li>-->
             </ul>
 
             <ul class="navbar-nav ml-auto nav-flex-icons">
 
 
 
-                <#if user??>
+                <#if user??&&name!="unknown">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">${name}
@@ -55,21 +55,17 @@
                             <@l.logout />
                         </div>
                     </li>
-                </#if>
 
-                <#if user??>
                     <li class="nav-item">
                         <a class="btn btn-info btn-sm btn-rounded waves-effect waves-light" href="/messageAdd" role="button">Новое объявление</a>
                     </li>
                 </#if>
 
-                <#if !user??>
+                <#if !user?? || name = "unknown">
                     <li class="nav-item">
                         <a class="nav-link" href="/registration">Регистрация</a>
                     </li>
-                </#if>
 
-                <#if !user??>
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Вход</a>
                     </li>

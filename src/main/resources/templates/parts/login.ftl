@@ -10,32 +10,33 @@
             <p class="h4 mb-4"><#if !isRegisterForm>Вход<#else>Регистрация</#if></p>
 
             <!-- Username -->
+            <#if isRegisterForm>
             <div class="mb-4">
                 <input type="text" name="username" value="<#if user??>${user.username}</#if>"
                        id="defaultLoginFormEmail"
-                       class="form-control ${(passwordError??)?string('is-invalid', '')}"
-                       placeholder="Имя пользователя" />
+                       class="form-control ${(usernameError??)?string('is-invalid', '')}"
+                       placeholder="Имя" />
                 <#if usernameError??>
                     <div class="invalid-feedback">
                         ${usernameError}
+<#--                        <#if usernameError="Username cannot be empty">!!!!!!!!!!!!!</#if>-->
                     </div>
                 </#if>
             </div>
+            </#if>
 
             <!-- Email -->
-            <#if isRegisterForm>
             <div class="mb-4">
                 <input type="email" name="email" value="<#if user??>${user.email}</#if>"
                    id="defaultLoginFormEmail"
                    class="form-control ${(emailError??)?string('is-invalid', '')}"
-                   placeholder="some@some.com">
+                   placeholder="Электронная почта">
                 <#if emailError??>
                     <div class="invalid-feedback">
                         ${emailError}
                     </div>
                 </#if>
             </div>
-            </#if>
 
             <!-- Phone -->
             <#if isRegisterForm>
@@ -43,7 +44,7 @@
                     <input type="text" name="phone" value="<#if user??>${user.phone}</#if>"
                            id="defaultLoginFormEmail"
                            class="form-control ${(phoneError??)?string('is-invalid', '')}"
-                           placeholder="+7(987)654-32-10">
+                           placeholder="Телефон: +7 (987) 654-32-10">
                     <#if phoneError??>
                         <div class="invalid-feedback">
                             ${phoneError}
@@ -79,16 +80,16 @@
             </#if>
 
             <!-- recaptcha -->
-            <#if isRegisterForm>
-            <div class="mb-4">
-                <div class="g-recaptcha" data-sitekey="6LcjyMAUAAAAABy8qsBXe4ETeIRTq6SB2sF-RgiH"></div>
-                <#if captchaError??>
-                    <div class="alert alert-danger" role="alert">
-                        ${captchaError}
-                    </div>
-                </#if>
-            </div>
-            </#if>
+<#--            <#if isRegisterForm>-->
+<#--            <div class="mb-4">-->
+<#--                <div class="g-recaptcha" data-sitekey="6LcjyMAUAAAAABy8qsBXe4ETeIRTq6SB2sF-RgiH"></div>-->
+<#--                <#if captchaError??>-->
+<#--                    <div class="alert alert-danger" role="alert">-->
+<#--                        ${captchaError}-->
+<#--                    </div>-->
+<#--                </#if>-->
+<#--            </div>-->
+<#--            </#if>-->
 
 
             <#if !isRegisterForm>

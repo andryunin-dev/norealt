@@ -42,33 +42,34 @@ public class RegistrationController {
     public String addUser(
             @RequestParam("password2") String passwordConfirm,
 //            @RequestParam("phone") String phone,
-            @RequestParam("g-recaptcha-response") String captchaResponce,
+//            @RequestParam("g-recaptcha-response") String captchaResponce,
             @Valid User user,
             BindingResult bindingResult,
             Model model
     ) {
 
-        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+//        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
+//        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
-        if (!response.isSuccess()) {
-            model.addAttribute("captchaError", "Fill captcha");
-        }
+//        if (!response.isSuccess()) {
+//            model.addAttribute("captchaError", "Fill captcha");
+//        }
 
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
 
         if (isConfirmEmpty) {
-            model.addAttribute("password2Error", "Password confirmation cannot be empty");
+            model.addAttribute("password2Error", "Повторите пароль");
         }
 
         if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
-            model.addAttribute("passwordError", "Passwords are different!");
+            model.addAttribute("passwordError", "Пароли не совпадают!");
         }
 
         if (    isConfirmEmpty ||
                 bindingResult.hasErrors() ||
-                model.containsAttribute("passwordError") ||
-                !response.isSuccess()
+                model.containsAttribute("passwordError")
+//                ||
+//                !response.isSuccess()
         ) {
             Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
 
@@ -78,7 +79,7 @@ public class RegistrationController {
         }
 
         if (!userService.addUser(user)) {
-            model.addAttribute("usernameError", "User exists!");
+            model.addAttribute("emailError", "Пользователь с таким email уже существует!");
             return "registration";
         }
 
@@ -91,13 +92,14 @@ public class RegistrationController {
 
         if (isActivated) {
             model.addAttribute("messageType", "success");
-            model.addAttribute("message", "User successfully activated");
+            model.addAttribute("message", "Аккаунт успешно активирован!");
         } else {
             model.addAttribute("messageType", "danger");
-            model.addAttribute("message", "Activation code is not found!");
+            model.addAttribute("message", "Код активации не найден!");
         }
 
         return "login";
     }
+
 }
 

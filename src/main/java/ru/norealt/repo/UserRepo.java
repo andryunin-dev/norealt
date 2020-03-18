@@ -6,5 +6,7 @@ import ru.norealt.domain.User;
 public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
+    User findByEmail(String email);
+
     User findByActivationCode(String code);
 }
