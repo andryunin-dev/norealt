@@ -4,7 +4,7 @@
 <@c.page>
     <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
         <div class="alert alert-danger" role="alert">
-            Неправильный email или пароль!
+            ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}
         </div>
     </#if>
 

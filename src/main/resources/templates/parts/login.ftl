@@ -9,17 +9,16 @@
 
             <p class="h4 mb-4"><#if !isRegisterForm>Вход<#else>Регистрация</#if></p>
 
-            <!-- Username -->
             <#if isRegisterForm>
+            <!-- Username -->
             <div class="mb-4">
                 <input type="text" name="username" value="<#if user??>${user.username}</#if>"
-                       id="defaultLoginFormEmail"
+                       id="username"
                        class="form-control ${(usernameError??)?string('is-invalid', '')}"
                        placeholder="Имя" />
                 <#if usernameError??>
                     <div class="invalid-feedback">
                         ${usernameError}
-<#--                        <#if usernameError="Username cannot be empty">!!!!!!!!!!!!!</#if>-->
                     </div>
                 </#if>
             </div>
@@ -28,7 +27,7 @@
             <!-- Email -->
             <div class="mb-4">
                 <input type="email" name="email" value="<#if user??>${user.email}</#if>"
-                   id="defaultLoginFormEmail"
+                   id="email"
                    class="form-control ${(emailError??)?string('is-invalid', '')}"
                    placeholder="Электронная почта">
                 <#if emailError??>
@@ -42,7 +41,7 @@
             <#if isRegisterForm>
                 <div class="mb-4">
                     <input type="text" name="phone" value="<#if user??>${user.phone}</#if>"
-                           id="defaultLoginFormEmail"
+                           id="phone"
                            class="form-control ${(phoneError??)?string('is-invalid', '')}"
                            placeholder="Телефон: +7 (987) 654-32-10">
                     <#if phoneError??>
@@ -80,31 +79,17 @@
             </#if>
 
             <!-- recaptcha -->
-<#--            <#if isRegisterForm>-->
-<#--            <div class="mb-4">-->
-<#--                <div class="g-recaptcha" data-sitekey="6LcjyMAUAAAAABy8qsBXe4ETeIRTq6SB2sF-RgiH"></div>-->
-<#--                <#if captchaError??>-->
-<#--                    <div class="alert alert-danger" role="alert">-->
-<#--                        ${captchaError}-->
-<#--                    </div>-->
-<#--                </#if>-->
-<#--            </div>-->
-<#--            </#if>-->
-
-
-            <#if !isRegisterForm>
-            <div class="d-flex justify-content-around">
-                <div>
-                    <!-- Remember me -->
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                        <label class="custom-control-label" for="defaultLoginFormRemember">Запомнить пароль</label>
+            <#if isRegisterForm>
+            <div class="mb-4">
+                <div class="g-recaptcha" data-sitekey="6LcjyMAUAAAAABy8qsBXe4ETeIRTq6SB2sF-RgiH"></div>
+                <#if captchaError??>
+                    <div class="alert alert-danger" role="alert">
+                        ${captchaError}
                     </div>
-                </div>
-                <div>
-                    <!-- Forgot password -->
-                    <a href="">Забыли пароль?</a>
-                </div>
+                </#if>
+            </div>
+            <div class="mb-4">
+                Подтверждение регистрации будет отправлено на вашу почту.
             </div>
             </#if>
 
@@ -112,14 +97,18 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
             <button class="btn btn-info btn-block my-4" type="submit"><#if !isRegisterForm>Войти<#else>Зарегистрироваться</#if></button>
 
-            <!-- Register -->
             <#if !isRegisterForm>
-            <p>
-                <a href="/registration">Зарегистрироваться</a>
-            </p>
+                <div class="d-flex justify-content-around">
+                    <div>
+                        <!-- Register -->
+                        <a href="/registration">Зарегистрироваться</a>
+                    </div>
+                    <div>
+                        <!-- Forgot password -->
+                        <a href="/restore">Забыли пароль?</a>
+                    </div>
+                </div>
             </#if>
-
-
         </form>
     </div>
     <!-- Default form login -->
@@ -128,6 +117,6 @@
 <#macro logout>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <input type="submit" value="Sign Out" class="dropdown-item"/>
+        <input type="submit" value="Выход" class="dropdown-item"/>
     </form>
 </#macro>

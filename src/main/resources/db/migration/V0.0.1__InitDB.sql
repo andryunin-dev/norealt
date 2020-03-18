@@ -16,14 +16,15 @@ create table user_role (
 
 create table usr (
                      id int8 not null,
-                     activation_code varchar(255),
-                     active boolean not null,
-                     email varchar(255),
-                     password varchar(255) not null,
+                     email varchar(255) not null,
                      username varchar(255) not null,
+                     phone varchar(255) not null,
                      last_visit varchar(255),
                      registration_date varchar(255),
-                     phone varchar(255),
+                     active boolean not null,
+                     activation_code varchar(255),
+                     restore_code varchar(255),
+                     password varchar(255) not null,
                      primary key (id)
 );
 

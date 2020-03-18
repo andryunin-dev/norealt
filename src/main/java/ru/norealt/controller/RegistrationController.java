@@ -33,6 +33,9 @@ public class RegistrationController {
     @Autowired
     private RestTemplate restTemplate;
 
+
+
+    /*   Registration user   */
     @GetMapping("/registration")
     public String registration() {
         return "registration";
@@ -40,36 +43,41 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(
-            @RequestParam("password2") String passwordConfirm,
-//            @RequestParam("phone") String phone,
-//            @RequestParam("g-recaptcha-response") String captchaResponce,
+            @RequestParam("password2") String password2,
+            @RequestParam("phone") String phone,
+            @RequestParam("g-recaptcha-response") String captchaResponce,
             @Valid User user,
             BindingResult bindingResult,
             Model model
     ) {
 
-//        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-//        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
+        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
-//        if (!response.isSuccess()) {
-//            model.addAttribute("captchaError", "Fill captcha");
-//        }
+        if (!response.isSuccess()) {
+            model.addAttribute("captchaError", "Fill captcha");
+        }
 
-        boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
+        boolean isEmptyPass2 = StringUtils.isEmpty(password2);
+        boolean isEmptyPhone = StringUtils.isEmpty(phone);
 
-        if (isConfirmEmpty) {
+        if (isEmptyPhone) {
+            model.addAttribute("phoneError", "Введите телефон");
+        }
+
+        if (isEmptyPass2) {
             model.addAttribute("password2Error", "Повторите пароль");
         }
 
-        if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
+        if (user.getPassword() != null && !user.getPassword().equals(password2)) {
             model.addAttribute("passwordError", "Пароли не совпадают!");
         }
 
-        if (    isConfirmEmpty ||
+        if (    isEmptyPhone ||
+                isEmptyPass2 ||
                 bindingResult.hasErrors() ||
-                model.containsAttribute("passwordError")
-//                ||
-//                !response.isSuccess()
+                model.containsAttribute("passwordError") ||
+                !response.isSuccess()
         ) {
             Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
 
@@ -86,6 +94,10 @@ public class RegistrationController {
         return "redirect:/login";
     }
 
+
+
+
+    /*   Activation user account   */
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code) {
         boolean isActivated = userService.activateUser(code);
@@ -100,6 +112,86 @@ public class RegistrationController {
 
         return "login";
     }
+
+
+
+
+
+    /*   Restore user password   */
+    @GetMapping("/restore")
+    public String getRestore() {
+        return "restore_email";
+    }
+
+    @PostMapping("/restore")
+    public String sendRestoreToken(
+            Model model,
+            @RequestParam("email") String email
+
+    ) {
+        boolean isRestore = userService.sendToken(email);
+
+        if (isRestore) {
+            model.addAttribute("messageRestore", "success");
+            model.addAttribute("message", "Ссылка для восстановления пароля отправлена на ваш email.\nУбедитесь, что письмо не попало в папку \"Спам\"");
+        } else {
+            model.addAttribute("messageRestore", "danger");
+            model.addAttribute("message", "Пользователь с таким email не найден!");
+        }
+
+        return "restore_email";
+    }
+
+    @GetMapping("/restore/{code}")
+    public String getRestoreCode(Model model, @PathVariable String code) {
+        boolean isRestore = userService.checkedRestoreCode(code);
+
+        if (isRestore) {
+            model.addAttribute("messageRestorePass", "success");
+            model.addAttribute("message", "Введите новый пароль.");
+        } else {
+            model.addAttribute("messageRestorePass", "danger");
+            model.addAttribute("message", "Ошибка! Неправильная ссылка.");
+        }
+
+        return "restore_password";
+    }
+
+    @PostMapping("/restore/{code}")
+    public String updateProfile(
+            @PathVariable String code,
+            @RequestParam("password") String password,
+            @RequestParam("password2") String password2,
+            Model model
+    ) {
+
+        boolean isEmptyPass = StringUtils.isEmpty(password);
+        boolean isEmptyPass2 = StringUtils.isEmpty(password2);
+
+        if (isEmptyPass) {
+            model.addAttribute("passwordErrorRestore", "Не может быть пустым");
+            return "/restore_password";
+        }
+
+        if (isEmptyPass2) {
+            model.addAttribute("password2ErrorRestore", "Не может быть пустым");
+            return "/restore_password";
+        }
+
+        if (!password.equals(password2)) {
+            model.addAttribute("passwordErrorRestore", "Пароли не совпадают!");
+            return "/restore_password";
+        }
+
+        User user = userService.returnUser(code);
+
+        userService.updateNewPassword(user, password);
+
+        return "redirect:/login";
+    }
+
+
+
 
 }
 

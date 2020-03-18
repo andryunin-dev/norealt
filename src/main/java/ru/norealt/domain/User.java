@@ -23,19 +23,18 @@ public class User implements UserDetails {
     @NotBlank(message = "Введите пароль")
     private String password;
 
-    private boolean active;
-
     @Email(message = "Неверный адрес")
     @NotBlank(message = "Введите электронную почту")
     private String email;
 
+    @NotBlank(message = "Введите телефон")
     private String phone;
 
+    private boolean active;
     private String activationCode;
+    private String restoreCode;
     private String lastVisit;
     private String registrationDate;
-
-
 
 
 
@@ -175,5 +174,13 @@ public class User implements UserDetails {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRestoreCode() {
+        return restoreCode;
+    }
+
+    public void setRestoreCode(String restoreCode) {
+        this.restoreCode = restoreCode;
     }
 }

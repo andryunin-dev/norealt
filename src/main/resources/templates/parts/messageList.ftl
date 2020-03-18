@@ -34,7 +34,7 @@
             <div class="card-footer text-muted text-center">
                 id: ${message.id}
                 <#if message.author.id == currentUserId || isAdmin>
-                    <#include "edit_delete.ftl" />
+                    <#include "btn_edit_delete.ftl" />
                 </#if>
             </div>
 

@@ -51,7 +51,7 @@
                             id: ${message.id}
                             <#if message.author.id == currentUserId || isAdmin>
 
-                                <#include "edit_delete.ftl" />
+                                <#include "btn_edit_delete.ftl" />
 
                             </#if>
                         </li>
