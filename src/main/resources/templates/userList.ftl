@@ -8,10 +8,11 @@
         <thead>
         <tr>
             <th class="th-sm">ID</th>
-            <th class="th-sm">Name</th>
             <th class="th-sm">Email</th>
+            <th class="th-sm">Name</th>
+            <th class="th-sm">Phone</th>
             <th class="th-sm">Active</th>
-            <th class="th-sm">Activation code</th>
+            <th class="th-sm">LastVisit</th>
             <th class="th-sm">Role</th>
             <th class="th-sm">Edit</th>
         </tr>
@@ -20,12 +21,13 @@
         <#list users as user>
             <tr>
                 <td width="5%">${user.id}</td>
-                <td width="10%">${user.username}</td>
-                <td width="30%">${user.email!"null"}</td>
+                <td width="25%">${user.email!"null"}</td>
+                <td width="15%">${user.username}</td>
+                <td width="10%">${user.phone}</td>
                 <td width="5%">${user.active?string('yes', 'no')}</td>
-                <td width="35%">${user.activationCode!"null"}</td>
+                <td width="25%">${user.lastVisit!"null"}</td>
                 <td width="10%"><#list user.roles as role>${role}<#sep>, </#list></td>
-                <td width="5%"><a href="/user/${user.id}">Edit</a></td>
+                <td width="5%"><a href="/administration/edit/${user.id}">Edit</a></td>
             </tr>
         </#list>
 
@@ -33,10 +35,11 @@
         <tfoot>
         <tr>
             <th>ID</th>
-            <th>Name</th>
             <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
             <th>Active</th>
-            <th>Activation code</th>
+            <th>LastVisit</th>
             <th>Role</th>
             <th>Edit</th>
         </tr>

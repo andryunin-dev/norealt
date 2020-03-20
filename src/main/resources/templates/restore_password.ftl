@@ -13,6 +13,9 @@
                 </div>
             </#if>
 
+            <#assign messageAllert=messageRestorePass!"null"/>
+
+            <#if messageAllert=="success" || messageAllert=="null">
             <p class="h4 mb-4">Восстановление пароля</p>
 
             <!-- Password -->
@@ -42,6 +45,7 @@
             <!-- Sign in button -->
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
             <button class="btn btn-info btn-block my-4" type="submit">Сохранить</button>
+            </#if>
 
         </form>
     </div>

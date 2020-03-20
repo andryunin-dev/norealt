@@ -159,10 +159,12 @@ public class UserService implements UserDetailsService {
         return userRepo.findAll();
     }
 
-    public void saveUser(User user, String username,
-                         boolean active,
-                         Map<String, String> form) {
+    public void updateUserAdministrator(User user, String username,
+                                        String phone,
+                                        boolean active,
+                                        Map<String, String> form) {
         user.setUsername(username);
+        user.setPhone(phone);
         user.setActive(active);
 
         Set<String> roles = Arrays.stream(Role.values())
@@ -180,6 +182,45 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
+
+    public void updateUserProfile(User user, String username, String phone) {
+        user.setUsername(username);
+        user.setPhone(phone);
+        userRepo.save(user);
+    }
+
+
+    public boolean checkOldPassword(User user, String old_password) {
+
+        if (!StringUtils.isEmpty(old_password)) {
+            boolean isEq = passwordEncoder.matches(old_password, user.getPassword());
+
+            if (isEq) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+//    /*   update new Password   */
+//    public boolean updateNewPassword(User user, String password) {
+//
+//        if (!StringUtils.isEmpty(password)) {
+//            user.setPassword(password);
+//        }
+//
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setRestoreCode(null);
+//        userRepo.save(user);
+//
+//        return true;
+//    }
+
+
+
+
+
+/////////////////////не используется//////////////////////////////////////
     public void updateProfile(User user, String password, String email) {
         String userEmail = user.getEmail();
 
@@ -206,6 +247,7 @@ public class UserService implements UserDetailsService {
             sendEmailActivationCode(user);
         }
     }
+
 
 
 }
