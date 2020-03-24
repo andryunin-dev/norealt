@@ -1,5 +1,6 @@
 package ru.norealt.domain;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,16 +19,20 @@ public class User implements UserDetails {
     private Long id;
 
     @NotBlank(message = "Введите имя")
+    @Length(max = 255, message = "Не более 255 символов")
     private String username;
 
     @NotBlank(message = "Введите пароль")
+    @Length(max = 255, message = "Не более 255 символов")
     private String password;
 
-    @Email(message = "Неверный адрес")
     @NotBlank(message = "Введите электронную почту")
+    @Length(max = 255, message = "Не более 255 символов")
+    @Email(message = "Неверный адрес")
     private String email;
 
     @NotBlank(message = "Введите телефон")
+    @Length(max = 255, message = "Не более 255 символов")
     private String phone;
 
     private boolean active;

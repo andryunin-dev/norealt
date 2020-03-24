@@ -30,9 +30,12 @@
 
             <!-- Sign in button -->
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <button class="btn btn-info btn-block my-4" type="submit">Сбросить пароль</button>
+            <button class="btn btn-info btn-block my-4" id="submit" type="submit">Сбросить пароль</button>
 
         </form>
     </div>
+    <script>
+        bootstrapValidate('#email', 'email:Введите корректный email.|max:255:Не более 255 символов!');
+    </script>
 
 </@c.page>

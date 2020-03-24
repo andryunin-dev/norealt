@@ -26,11 +26,7 @@
                     <a class="nav-link" href="/administration/user_list">User List</a>
                 </li>
                 </#if>
-                <#if user??&&name!="unknown">
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">Профиль2</a>
-                </li>
-                </#if>
+<#--                </#if>-->
 <#--                <li class="nav-item dropdown">-->
 <#--                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"-->
 <#--                       aria-haspopup="true" aria-expanded="false">Dropdown-->
@@ -49,13 +45,14 @@
 
                 <#if user??&&name!="unknown">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle"
+                           id="navbarDropdownMenuLink-555" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">${name}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-lg-right  dropdown-info"
                              aria-labelledby="navbarDropdownMenuLink-55">
-                            <a class="dropdown-item" href="/user/profile">Профиль</a>
+                            <a class="dropdown-item" href="/profile">Профиль</a>
                             <a class="dropdown-item" href="/user-messages/${currentUserId}">Мои объявления</a>
                             <@l.logout />
                         </div>

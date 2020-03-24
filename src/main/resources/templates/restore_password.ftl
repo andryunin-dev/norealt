@@ -20,7 +20,7 @@
 
             <!-- Password -->
             <div class="mb-4">
-                <input type="password" name="password" id="defaultLoginFormPassword"
+                <input type="password" name="password" id="password"
                        class="form-control ${(passwordErrorRestore??)?string('is-invalid', '')}"
                        placeholder="Пароль">
                 <#if passwordErrorRestore??>
@@ -32,7 +32,7 @@
 
             <!-- Password2 -->
             <div class="mb-4">
-                <input type="password" name="password2" id="defaultLoginFormPassword2"
+                <input type="password" name="password2" id="password2"
                        class="form-control ${(password2ErrorRestore??)?string('is-invalid', '')}"
                        placeholder="Повторите пароль">
                 <#if password2ErrorRestore??>
@@ -44,10 +44,14 @@
 
             <!-- Sign in button -->
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <button class="btn btn-info btn-block my-4" type="submit">Сохранить</button>
+            <button class="btn btn-info btn-block my-4" id="submit" type="submit" disabled>Сохранить</button>
             </#if>
 
         </form>
     </div>
+    <script>
+        bootstrapValidate('#password', 'max:255:Не более 255 символов!');
+        bootstrapValidate('#password2', 'matches:#password:Пароли не совпадают!|max:255:Не более 255 символов!');
+    </script>
 
 </@c.page>

@@ -55,7 +55,7 @@ public class RegistrationController {
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
         if (!response.isSuccess()) {
-            model.addAttribute("captchaError", "Fill captcha");
+            model.addAttribute("captchaError", "Неправильная Captcha. Попробуйте ещё раз.");
         }
 
         boolean isEmptyPass2 = StringUtils.isEmpty(password2);
@@ -87,7 +87,8 @@ public class RegistrationController {
         }
 
         if (!userService.addUser(user)) {
-            model.addAttribute("emailError", "Пользователь с таким email уже существует!");
+            model.addAttribute("messageType", "danger");
+            model.addAttribute("message", "Пользователь с таким email уже существует!");
             return "registration";
         }
 
@@ -189,10 +190,6 @@ public class RegistrationController {
 
         return "redirect:/login";
     }
-
-
-
-
 
 
 }

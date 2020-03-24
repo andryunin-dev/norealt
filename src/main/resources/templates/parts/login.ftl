@@ -28,13 +28,15 @@
             <div class="mb-4">
                 <input type="email" name="email" value="<#if user??>${user.email}</#if>"
                    id="email"
-                   class="form-control ${(emailError??)?string('is-invalid', '')}"
+                   class="form-control
+<#--                        ${(emailError??)?string('is-invalid', '')}-->
+                    "
                    placeholder="Электронная почта">
-                <#if emailError??>
-                    <div class="invalid-feedback">
-                        ${emailError}
-                    </div>
-                </#if>
+<#--                <#if emailError??>-->
+<#--                    <div class="invalid-feedback">-->
+<#--                        ${emailError}-->
+<#--                    </div>-->
+<#--                </#if>-->
             </div>
 
             <!-- Phone -->
@@ -43,7 +45,7 @@
                     <input type="text" name="phone" value="<#if user??>${user.phone}</#if>"
                            id="phone"
                            class="form-control ${(phoneError??)?string('is-invalid', '')}"
-                           placeholder="Телефон: +7 (987) 654-32-10">
+                           placeholder="Телефон">
                     <#if phoneError??>
                         <div class="invalid-feedback">
                             ${phoneError}
@@ -54,7 +56,7 @@
 
             <!-- Password -->
             <div class="mb-4">
-                <input type="password" name="password" id="defaultLoginFormPassword"
+                <input type="password" name="password" id="password"
                        class="form-control ${(passwordError??)?string('is-invalid', '')}"
                        placeholder="Пароль">
                 <#if passwordError??>
@@ -67,7 +69,7 @@
             <!-- Password2 -->
             <#if isRegisterForm>
             <div class="mb-4">
-                <input type="password" name="password2" id="defaultLoginFormPassword2"
+                <input type="password" name="password2" id="password2"
                        class="form-control ${(password2Error??)?string('is-invalid', '')}"
                        placeholder="Повторите пароль">
                 <#if password2Error??>
@@ -80,7 +82,7 @@
 
             <!-- recaptcha -->
             <#if isRegisterForm>
-            <div class="mb-4">
+            <div class="mb-4" id="recaptcha">
                 <div class="g-recaptcha" data-sitekey="6LcjyMAUAAAAABy8qsBXe4ETeIRTq6SB2sF-RgiH"></div>
                 <#if captchaError??>
                     <div class="alert alert-danger" role="alert">
@@ -95,7 +97,7 @@
 
             <!-- Sign in button -->
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <button class="btn btn-info btn-block my-4" type="submit"><#if !isRegisterForm>Войти<#else>Зарегистрироваться</#if></button>
+            <button class="btn btn-info btn-block my-4" id="submit" type="submit"><#if !isRegisterForm>Войти<#else>Зарегистрироваться</#if></button>
 
             <#if !isRegisterForm>
                 <div class="d-flex justify-content-around">
@@ -112,6 +114,23 @@
         </form>
     </div>
     <!-- Default form login -->
+    <#if isRegisterForm>
+        <!-- bootstrap-validate-settings -->
+        <script>
+            bootstrapValidate('#username', 'max:255:Не более 255 символов!');
+            bootstrapValidate('#email', 'email:Введите корректный email.|max:255:Не более 255 символов!');
+            bootstrapValidate('#password', 'max:255:Не более 255 символов!');
+            bootstrapValidate('#password2', 'matches:#password:Пароли не совпадают!|max:255:Не более 255 символов!');
+        </script>
+    </#if>
+
+    <#if !isRegisterForm>
+        <!-- bootstrap-validate-settings -->
+        <script>
+            bootstrapValidate('#email', 'email:Введите корректный email.|max:255:Не более 255 символов!');
+            bootstrapValidate('#password', 'max:255:Не более 255 символов!');
+        </script>
+    </#if>
 </#macro>
 
 <#macro logout>

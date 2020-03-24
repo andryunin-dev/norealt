@@ -20,18 +20,28 @@
         <!-- SCRIPTS -->
         <!-- JQuery -->
         <script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+        <!-- JQuery maskedinput -->
+        <script type="text/javascript" src="/static/js/jquery.maskedinput.min.js"></script>
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="/static/js/popper.min.js"></script>
+        <!-- footer down -->
         <script type="text/javascript" src="/static/js/footer.js"></script>
         <!-- Material Design Table -->
         <script type="text/javascript" src="/static/js/addons/datatables.min.js"></script>
+        <!-- Material Design Table -->
         <script type="text/javascript" src="/static/js/addons/datatables-select.min.js"></script>
+        <!-- Material Design Table -->
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#dtBasicExample').DataTable();
                 $('.dataTables_length').addClass('bs-select');
             });
         </script>
+        <!-- bootstrap-validate -->
+        <script type="text/javascript" src="/static/js/validate/bootstrap-validate.js"></script>
+        <!-- bootstrap-validate-button_disabled -->
+        <script type="text/javascript" src="/static/js/validate/bootstrap-validate-btndissable.js"></script>
+
     </head>
 
     <body>
@@ -46,9 +56,11 @@
         <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="/static/js/mdb.min.js"></script>
-
+        <!-- recaptcha -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     </body>
+
     </html>
 
 </#macro>
