@@ -27,16 +27,16 @@
         <!-- footer down -->
         <script type="text/javascript" src="/static/js/footer.js"></script>
         <!-- Material Design Table -->
-        <script type="text/javascript" src="/static/js/addons/datatables.min.js"></script>
+<#--        <script type="text/javascript" src="/static/js/addons/datatables.min.js"></script>-->
         <!-- Material Design Table -->
-        <script type="text/javascript" src="/static/js/addons/datatables-select.min.js"></script>
+<#--        <script type="text/javascript" src="/static/js/addons/datatables-select.min.js"></script>-->
         <!-- Material Design Table -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#dtBasicExample').DataTable();
-                $('.dataTables_length').addClass('bs-select');
-            });
-        </script>
+<#--        <script type="text/javascript">-->
+<#--            $(document).ready(function () {-->
+<#--                $('#dtBasicExample').DataTable();-->
+<#--                $('.dataTables_length').addClass('bs-select');-->
+<#--            });-->
+<#--        </script>-->
         <!-- bootstrap-validate -->
         <script type="text/javascript" src="/static/js/validate/bootstrap-validate.js"></script>
         <!-- bootstrap-validate-button_disabled -->

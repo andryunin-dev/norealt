@@ -76,7 +76,7 @@
             </div>
 
 
-            <input type="hidden" value="${user.id}" name="userId">
+            <input type="hidden" value="${user.id?c}" name="userId">
             <input type="hidden" value="${_csrf.token}" name="_csrf">
             <button class="btn btn-info btn-block my-4" type="submit">Сохранить</button>
 

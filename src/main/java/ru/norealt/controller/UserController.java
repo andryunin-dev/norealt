@@ -6,9 +6,13 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.norealt.domain.Role;
 import ru.norealt.domain.User;
+import ru.norealt.service.SortUserService;
 import ru.norealt.service.UserService;
 
 import java.util.Map;
@@ -18,13 +22,44 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SortUserService sortUserService;
+
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    @GetMapping("/administration/user_list")
+//    public String getUserList(Model model) {
+//        model.addAttribute("users", userService.findAll());
+//
+//        return "userList";
+//    }
+
+    /////////////////////////
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/administration/user_list")
-    public String getUserList(Model model) {
-        model.addAttribute("users", userService.findAll());
+    public String getUserList(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "100") Integer size,
+            @RequestParam(defaultValue = "id") String group,
+            @RequestParam(defaultValue = "asc") String sort,
+            Model model
+    ) {
+        int totalpages = sortUserService.getTotalPages(page, size);
+
+        Iterable<User> users = sortUserService.getAllUsers(page, size, group, sort);
+
+        model.addAttribute("users", users);
+        model.addAttribute("totalpages", totalpages);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        model.addAttribute("group", group);
+        model.addAttribute("sort", sort);
+        model.addAttribute("url", "/administration/user_list");
 
         return "userList";
     }
+
+    //////////////////////////
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/administration/edit/{user}")

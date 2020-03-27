@@ -13,6 +13,7 @@ import ru.norealt.domain.User;
 import ru.norealt.repo.UserRepo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,10 @@ public class UserService implements UserDetailsService {
     }
 
     public void addLastVisit(User user) {
-        user.setLastVisit(LocalDateTime.now().toString());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String lastVisit = localDateTime.format(formatter);
+        user.setLastVisit(lastVisit);
         userRepo.save(user);
     }
 
