@@ -1,6 +1,9 @@
 package ru.norealt.controller;
 
+import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.norealt.domain.Role;
 import ru.norealt.domain.User;
+import ru.norealt.repo.UserRepo;
 import ru.norealt.service.SortUserService;
 import ru.norealt.service.UserService;
 
@@ -25,6 +29,9 @@ public class UserController {
     @Autowired
     private SortUserService sortUserService;
 
+    @Autowired
+    UserRepo userRepo;
+
 //    @PreAuthorize("hasAuthority('ADMIN')")
 //    @GetMapping("/administration/user_list")
 //    public String getUserList(Model model) {
@@ -37,18 +44,27 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/administration/user_list")
     public String getUserList(
+            @RequestParam(defaultValue = "0") Long min,
+            @RequestParam(defaultValue = "2000000000") Long max,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "100") Integer size,
             @RequestParam(defaultValue = "id") String group,
             @RequestParam(defaultValue = "asc") String sort,
-            Model model
+            Model model,
+            @QuerydslPredicate(root = User.class) Predicate predicate
     ) {
-        int totalpages = sortUserService.getTotalPages(page, size);
+        long totalpages = sortUserService.getTotalPages(min, max, page, size, group);
+        long totalelements = sortUserService.getTotalElements(min, max, page, size, group);
+        long max_id = userRepo.findMaxId();
 
-        Iterable<User> users = sortUserService.getAllUsers(page, size, group, sort);
+        Iterable<User> users = sortUserService.getAllUsers(min, max, predicate, page, size, group, sort);
 
         model.addAttribute("users", users);
         model.addAttribute("totalpages", totalpages);
+        model.addAttribute("totalelements", totalelements);
+        model.addAttribute("max_id", max_id);
+        model.addAttribute("min", min);
+        model.addAttribute("max", max);
         model.addAttribute("page", page);
         model.addAttribute("size", size);
         model.addAttribute("group", group);

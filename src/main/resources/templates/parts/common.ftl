@@ -20,6 +20,9 @@
         <!-- SCRIPTS -->
         <!-- JQuery -->
         <script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+
+
+
         <!-- JQuery maskedinput -->
         <script type="text/javascript" src="/static/js/jquery.maskedinput.min.js"></script>
         <!-- Bootstrap tooltips -->
@@ -37,10 +40,29 @@
 <#--                $('.dataTables_length').addClass('bs-select');-->
 <#--            });-->
 <#--        </script>-->
+
+
+
+        <link href="/static/multirangeslider/nouislider.css" rel="stylesheet">
+        <script type="text/javascript" src="/static/multirangeslider/nouislider.js"></script>
+
+
+
+
+
+
+
+
+
+
+
         <!-- bootstrap-validate -->
         <script type="text/javascript" src="/static/js/validate/bootstrap-validate.js"></script>
         <!-- bootstrap-validate-button_disabled -->
         <script type="text/javascript" src="/static/js/validate/bootstrap-validate-btndissable.js"></script>
+
+
+
 
     </head>
 

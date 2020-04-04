@@ -1,4 +1,4 @@
-<#macro pager url users totalpages page size group sort>
+<#macro pager url users totalpages min max page size group sort>
     <#if totalpages gt 7>
         <#assign
         totalPages = totalpages
@@ -31,7 +31,7 @@
                         </li>
                     <#else>
                         <li class="page-item">
-                            <a class="page-link" href="${url}?size=${size?c}&page=${(p-1)?c}&group=${group}&sort=${sort}" tabindex="-1">${p}</a>
+                            <a class="page-link" href="${url}?min=${min?c}&max=${max?c}&size=${size?c}&page=${(p-1)?c}&group=${group}&sort=${sort}" tabindex="-1">${p}</a>
                         </li>
                     </#if>
                 </#list>
@@ -48,11 +48,12 @@
                         </li>
                     <#else>
                         <li class="page-item">
-                            <a class="page-link" href="${url}?size=${c?c}&page=${page?c}&group=${group}&sort=${sort}" tabindex="-1">${c}</a>
+                            <a class="page-link" href="${url}?min=${min?c}&max=${max?c}&size=${c?c}&page=${page?c}&group=${group}&sort=${sort}" tabindex="-1">${c}</a>
                         </li>
                     </#if>
                 </#list>
             </ul>
         </div>
     </div>
+
 </#macro>
