@@ -1,0 +1,1 @@
+ALTER TABLE message ADD city varchar(255);

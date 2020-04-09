@@ -1,0 +1,9 @@
+ALTER TABLE message ADD street varchar(255);
+ALTER TABLE message ADD house varchar(255);
+ALTER TABLE message ADD object_type varchar(255);
+ALTER TABLE message ADD count_rooms varchar(255);
+ALTER TABLE message ADD square int;
+ALTER TABLE message ADD floor int;
+ALTER TABLE message ADD num_storeys int;
+ALTER TABLE message ADD price int;
+ALTER TABLE message ADD post_date varchar(255);

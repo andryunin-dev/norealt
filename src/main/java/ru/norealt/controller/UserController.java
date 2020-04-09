@@ -9,10 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.norealt.domain.Role;
 import ru.norealt.domain.User;
 import ru.norealt.repo.UserRepo;
@@ -39,6 +36,22 @@ public class UserController {
 //
 //        return "userList";
 //    }
+
+    //Удаление пользователя
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping("/administration/remove/{user.id}")
+    public String userDelete(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable("user.id") Long iduser
+    ) {
+        // удаляет только текущий пользователь или админ
+        if ( currentUser.getEmail().equals("admin@admin.com") ) {
+
+            userRepo.deleteById(iduser);
+
+        }
+        return "redirect:/administration/user_list";
+    }
 
     /////////////////////////
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -196,5 +209,8 @@ public class UserController {
 
         return "redirect:/main";
     }
+
+
+
 
 }

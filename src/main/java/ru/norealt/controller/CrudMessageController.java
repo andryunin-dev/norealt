@@ -31,48 +31,71 @@ public class CrudMessageController {
     private SaveService saveService;
 
 
-
     //форма добавления сообщения
     @GetMapping("/messageAdd")
     public String messageAdd() {
         return "messageAdd";
     }
 
+//    @PostMapping("/messageAdd")
+//    public String add(
+//            @AuthenticationPrincipal User user,
+//            @RequestParam("file") MultipartFile file,
+//            @Valid Message message,
+//            BindingResult bindingResult,
+//            Model model
+//
+//    ) throws IOException {
+//
+//        message.setAuthor(user);
+//
+//        if (bindingResult.hasErrors()) {
+//            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+//
+//            model.mergeAttributes(errorsMap);
+//            model.addAttribute("message", message);
+//
+//            //добавить временный редирект на страницу ошибки
+////            return "redirect:/messageAdd";
+//            return "messageAdd";
+//
+//        } else {
+//            saveService.saveMessage(user, message, file);
+//
+//            //очистить форму после успешной валидации
+//            model.addAttribute("message", null);
+//
+//            //сохраняем в БД
+//            messageRepo.saveMessage(message);
+//
+//        }
+//        return "redirect:/main";
+//
+//    }
+
+    //new
     @PostMapping("/messageAdd")
     public String add(
             @AuthenticationPrincipal User user,
+            @RequestParam("file") MultipartFile file,
             @Valid Message message,
             BindingResult bindingResult,
-            Model model,
-            @RequestParam("file") MultipartFile file
-    ) throws IOException {
+            Model model
 
-        message.setAuthor(user);
+    ) throws IOException {
 
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
 
             model.mergeAttributes(errorsMap);
-            model.addAttribute("message", message);
 
-            //добавить временный редирект на страницу ошибки
-//            return "redirect:/messageAdd";
             return "messageAdd";
-
-        } else {
-            saveService.save(user, message, file);
-
-            //очистить форму после успешной валидации
-            model.addAttribute("message", null);
-
-            //сохраняем в БД
-            messageRepo.save(message);
 
         }
 
-        //получить весь список из БД
-        Iterable<Message> messages = messageRepo.findAll();
-        model.addAttribute("messages", messages);
+        if (!saveService.saveMessage(user, message, file)) {
+            return "messageAdd";
+        }
 
         return "redirect:/main";
 
@@ -102,24 +125,64 @@ public class CrudMessageController {
     public String messageEdit(
             @AuthenticationPrincipal User currentUser,
             @PathVariable Long user,
-            @RequestParam("id") Message message,
+            Message message,
+            @RequestParam("city") String city,
+            @RequestParam("street") String street,
+            @RequestParam("house") String house,
+            @RequestParam("object_type") String object_type,
+            @RequestParam("count_rooms") String count_rooms,
+            @RequestParam("square") String square,
+            @RequestParam("floor") String floor,
+            @RequestParam("num_storeys") String num_storeys,
             @RequestParam("text") String text,
-            @RequestParam("tag") String tag,
+            @RequestParam("price") String price,
             @RequestParam("filename") String filename,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         if (message.getAuthor().equals(currentUser) || currentUser.getUsername().equals("admin")) {
 
+            if (!StringUtils.isEmpty(city)) {
+                message.setCity(city);
+            }
+
+            if (!StringUtils.isEmpty(street)) {
+                message.setStreet(street);
+            }
+
+            if (!StringUtils.isEmpty(house)) {
+                message.setHouse(house);
+            }
+
+            if (!StringUtils.isEmpty(object_type)) {
+                message.setObject_type(object_type);
+            }
+
+            if (!StringUtils.isEmpty(count_rooms)) {
+                message.setCount_rooms(count_rooms);
+            }
+
+            if (!StringUtils.isEmpty(square)) {
+                message.setSquare(square);
+            }
+
+            if (!StringUtils.isEmpty(floor)) {
+                message.setFloor(floor);
+            }
+
+            if (!StringUtils.isEmpty(num_storeys)) {
+                message.setNum_storeys(num_storeys);
+            }
+
             if (!StringUtils.isEmpty(text)) {
                 message.setText(text);
             }
 
-            if (!StringUtils.isEmpty(tag)) {
-                message.setTag(tag);
+            if (!StringUtils.isEmpty(price)) {
+                message.setPrice(price);
             }
 
             //загрузка нового файла в репозиторий
-            saveService.save(message.getAuthor(), message, file);
+            saveService.saveMessage(message.getAuthor(), message, file);
 
             //сохранить сообщение в БД
             messageRepo.save(message);

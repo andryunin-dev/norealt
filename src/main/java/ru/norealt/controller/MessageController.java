@@ -55,7 +55,8 @@ public class MessageController {
         Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
+//            messages = messageRepo.findByTag(filter);
+            messages = messageRepo.findByTextContainingIgnoreCase(filter2);
         } else if (filter2 != null && !filter2.isEmpty()) {
             messages = messageRepo.findByTextContainingIgnoreCase(filter2);
         } else {

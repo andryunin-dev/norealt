@@ -60,6 +60,10 @@
         <script type="text/javascript" src="/static/js/validate/bootstrap-validate.js"></script>
         <!-- bootstrap-validate-button_disabled -->
         <script type="text/javascript" src="/static/js/validate/bootstrap-validate-btndissable.js"></script>
+        <!-- bootstrap-validate-btndissable-addMessage -->
+        <script type="text/javascript" src="/static/js/validate/bootstrap-validate-btndissable-addMessage.js"></script>
+        <!-- bootstrap-validate-btndissable-editMessage -->
+        <script type="text/javascript" src="/static/js/validate/bootstrap-validate-btndissable-editMessage.js"></script>
 
 
 

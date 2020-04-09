@@ -18,6 +18,7 @@ $(document).ready(function () {
                     var phone = $("#phone").val();
                     var password = $("#password").val();
                     var password2 = $("#password2").val();
+                    var text = $("#text").val();
 
                     if (!isInvalid
                         && username != ''
@@ -25,6 +26,7 @@ $(document).ready(function () {
                         && phone != ''
                         && password != ''
                         && password2 != ''
+                        && text != ''
                     ) {
                         $(button).attr('disabled', false);
                     } else {
