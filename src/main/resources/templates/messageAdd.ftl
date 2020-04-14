@@ -232,7 +232,7 @@
                 </label>
                 <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-7">
                     <div class="input-group input-group-sm ">
-                        <input type="text" class="form-control" name="price" id="price">
+                        <input type="number" class="form-control" name="price" id="price">
                         <div class="input-group-append">
                             <span class="input-group-text">руб.</span>
                         </div>

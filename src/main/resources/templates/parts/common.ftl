@@ -23,6 +23,11 @@
 
 
 
+
+<#--        <script type="text/javascript" src="/static/js/jquery-url.min.js"></script>-->
+
+
+
         <!-- JQuery maskedinput -->
         <script type="text/javascript" src="/static/js/jquery.maskedinput.min.js"></script>
         <!-- Bootstrap tooltips -->

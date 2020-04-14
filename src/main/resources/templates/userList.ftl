@@ -1,13 +1,14 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/pager.ftl" as p>
+<#import "parts/pagerUsers.ftl" as p>
 
 <@c.page>
-    <h2>Список пользователей</h2>
+    <h3 class="text-center">Пользователи</h3>
+
+    <input type="hidden" id="max_id" name="max_id" value="${max_id?c}" />
 
     <form class="form-group row" action="/administration/user_list" method="get">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 px-4">
             <div class="row align-items-center">
-                <input type="hidden" id="max_id" name="max_id" value="${max_id?c}" />
 
                 <div class="col-12 col-lg-7 col-sm-12">
                     <div id="slider-connect"></div>
@@ -72,7 +73,7 @@
 
     <@p.pager url users totalpages min max page size group sort />
 
-    <div>Найдено <b>${totalelements?c}</b> пользователей</div>
+    <div>Найдено <b>${totalelements?c}</b></div>
     <div>MAX ID :<b>${max_id?c}</b></div>
 
 

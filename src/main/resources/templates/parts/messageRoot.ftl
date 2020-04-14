@@ -22,11 +22,7 @@
                     <h4 class="card-title mt-2">${message.count_rooms!""}-комн. ${message.object_type!""}, ${message.square!""} м², ${message.floor!""}/${message.num_storeys!""} этаж</h4>
                     <hr>
 
-                    <#if message.price = "null" || message.price = "" || message.price?contains(" ")>
-                        <h4 class="card-title">${message.price!""} р.</h4>
-                    <#else >
-                    <h4 class="card-title">${(message.price?number)?string(",##0")} р.</h4>
-                    </#if>
+                    <h4 class="card-title">${message.price!""} р.</h4>
 
                     <p class="card-text">г. ${message.city!""} ул. ${message.street!""} д. ${message.house!""}</p>
 

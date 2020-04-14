@@ -1,4 +1,4 @@
-<#macro pager url users totalpages min max page size group sort>
+<#macro pager url messages totalpages min max page size group sort city countRooms>
     <#if totalpages gt 7>
         <#assign
         totalPages = totalpages
@@ -18,7 +18,7 @@
         <div class="row">
             <ul class="pagination col justify-content-center">
                 <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Страницы</a>
+                    <a class="page-link" href="#" tabindex="-1">Страницы:</a>
                 </li>
                 <#list body as p>
                     <#if (p - 1) == page>
@@ -31,24 +31,26 @@
                         </li>
                     <#else>
                         <li class="page-item">
-                            <a class="page-link" href="${url}?min=${min?c}&max=${max?c}&size=${size?c}&page=${(p-1)?c}&group=${group}&sort=${sort}" tabindex="-1">${p}</a>
+                            <a class="page-link" href="${url}?size=${size?c}&page=${(p-1)?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" tabindex="-1">${p}</a>
                         </li>
                     </#if>
                 </#list>
             </ul>
 
+
+
             <ul class="pagination col justify-content-center">
                 <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Элементов на странице</a>
+                    <a class="page-link" href="#" tabindex="-1">Элементов:</a>
                 </li>
-                <#list [25, 50, 100, 500, 1000] as c>
+                <#list [12, 24, 48, 96] as c>
                     <#if c == size>
                         <li class="page-item active">
                             <a class="page-link" href="#" tabindex="-1">${c}</a>
                         </li>
                     <#else>
                         <li class="page-item">
-                            <a class="page-link" href="${url}?min=${min?c}&max=${max?c}&size=${c?c}&page=${page?c}&group=${group}&sort=${sort}" tabindex="-1">${c}</a>
+                            <a class="page-link" href="${url}?size=${c?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" tabindex="-1">${c}</a>
                         </li>
                     </#if>
                 </#list>

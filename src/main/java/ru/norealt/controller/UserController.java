@@ -44,7 +44,7 @@ public class UserController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable("user.id") Long iduser
     ) {
-        // удаляет только текущий пользователь или админ
+        // удаляет только админ
         if ( currentUser.getEmail().equals("admin@admin.com") ) {
 
             userRepo.deleteById(iduser);

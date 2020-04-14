@@ -15,18 +15,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
 
             <ul class="navbar-nav mr-auto">
+<#--                <li class="nav-item">-->
+<#--                    <a class="nav-link" href="/">Главная</a>-->
+<#--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/main">Messages</a>
+                    <a class="nav-link" href="/main">Объявления</a>
                 </li>
                 <#if isAdmin>
                 <li class="nav-item">
-                    <a class="nav-link" href="/administration/user_list">User List</a>
+                    <a class="nav-link" href="/administration/user_list">Пользователи</a>
                 </li>
                 </#if>
-<#--                </#if>-->
 <#--                <li class="nav-item dropdown">-->
 <#--                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"-->
 <#--                       aria-haspopup="true" aria-expanded="false">Dropdown-->

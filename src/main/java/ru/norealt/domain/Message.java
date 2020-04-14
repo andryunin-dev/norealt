@@ -3,7 +3,6 @@ package ru.norealt.domain;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Message {
@@ -27,38 +26,38 @@ public class Message {
 
     private String house;
 
-    private String object_type;
+    private String objectType;
 
-    private String count_rooms;
+    private String countRooms;
 
     private String square;
 
     private String floor;
 
-    private String num_storeys;
+    private String numStoreys;
 
-    private String price;
+    private Long price;
 
-    private String post_date;
+    private String postDate;
 
     public Message() {
     }
 
     public Message(User user, String text,
                    String city, String street, String house,
-                   String object_type, String count_rooms,
-                   String square, String floor, String num_storeys, String price
+                   String objectType, String countRooms,
+                   String square, String floor, String numStoreys, Long price
     ) {
         this.author = user;
         this.text = text;
         this.city = city;
         this.street = street;
         this.house = house;
-        this.object_type = object_type;
-        this.count_rooms = count_rooms;
+        this.objectType = objectType;
+        this.countRooms = countRooms;
         this.square = square;
         this.floor = floor;
-        this.num_storeys = num_storeys;
+        this.numStoreys = numStoreys;
         this.price = price;
     }
 
@@ -125,19 +124,19 @@ public class Message {
     }
 
     public String getObject_type() {
-        return object_type;
+        return objectType;
     }
 
     public void setObject_type(String object_type) {
-        this.object_type = object_type;
+        this.objectType = object_type;
     }
 
     public String getCount_rooms() {
-        return count_rooms;
+        return countRooms;
     }
 
     public void setCount_rooms(String count_rooms) {
-        this.count_rooms = count_rooms;
+        this.countRooms = count_rooms;
     }
 
     public String getSquare() {
@@ -157,26 +156,26 @@ public class Message {
     }
 
     public String getNum_storeys() {
-        return num_storeys;
+        return numStoreys;
     }
 
     public void setNum_storeys(String num_storeys) {
-        this.num_storeys = num_storeys;
+        this.numStoreys = num_storeys;
     }
 
-    public String getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
     public String getPost_date() {
-        return post_date;
+        return postDate;
     }
 
     public void setPost_date(String post_date) {
-        this.post_date = post_date;
+        this.postDate = post_date;
     }
 }

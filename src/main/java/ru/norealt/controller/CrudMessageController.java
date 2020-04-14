@@ -16,6 +16,7 @@ import ru.norealt.service.SaveService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Controller
@@ -84,6 +85,9 @@ public class CrudMessageController {
 
     ) throws IOException {
 
+        message.setAuthor(user);
+        message.setPost_date(LocalDateTime.now().toLocalDate().toString());
+
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
 
@@ -91,10 +95,12 @@ public class CrudMessageController {
 
             return "messageAdd";
 
-        }
+        } else {
 
-        if (!saveService.saveMessage(user, message, file)) {
-            return "messageAdd";
+            saveService.saveThumbnail(user, message, file);
+
+            messageRepo.save(message);
+
         }
 
         return "redirect:/main";
@@ -135,7 +141,7 @@ public class CrudMessageController {
             @RequestParam("floor") String floor,
             @RequestParam("num_storeys") String num_storeys,
             @RequestParam("text") String text,
-            @RequestParam("price") String price,
+            @RequestParam("price") Long price,
             @RequestParam("filename") String filename,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
@@ -182,7 +188,7 @@ public class CrudMessageController {
             }
 
             //загрузка нового файла в репозиторий
-            saveService.saveMessage(message.getAuthor(), message, file);
+            saveService.saveThumbnail(message.getAuthor(), message, file);
 
             //сохранить сообщение в БД
             messageRepo.save(message);

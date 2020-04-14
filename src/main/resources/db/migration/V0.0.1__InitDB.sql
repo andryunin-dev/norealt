@@ -3,8 +3,17 @@ create sequence hibernate_sequence start 5000001 increment 1;
 create table message (
                          id int8 not null,
                          filename varchar(255),
-                         tag varchar(255),
-                         text varchar(2048) not null,
+                         text varchar(2048),
+                         city varchar(255),
+                         street varchar(255),
+                         house varchar(255),
+                         object_type varchar(255),
+                         count_rooms varchar(255),
+                         square varchar(255),
+                         floor varchar(255),
+                         num_storeys varchar(255),
+                         price int8,
+                         post_date varchar(255),
                          user_id int8,
                          primary key (id)
 );

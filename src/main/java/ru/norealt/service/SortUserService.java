@@ -21,7 +21,7 @@ public class SortUserService {
     @Autowired
     UserPageAndSortRepo repository;
 
-//    public List<User> getAllUsers(Predicate predicate, Integer page, Integer size, String group, String sort)
+//    public List<User> getAllMessages(Predicate predicate, Integer page, Integer size, String group, String sort)
 //    {
 //        if (sort.equals("desc")) {
 //            Pageable pageable = PageRequest.of(page, size, Sort.by(group).descending());

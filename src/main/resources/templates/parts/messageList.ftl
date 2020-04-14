@@ -27,19 +27,16 @@
             <!-- Card content -->
             <div class="card-body card-body-cascade text-left">
 
-                <#if message.price = "null" || message.price = "" || message.price?contains(" ")>
-                    <h6 class="card-title"><strong>${message.price!""} р.</strong></h6>
-                <#else >
-                    <h6 class="card-title"><strong>${(message.price?number)?string(",##0")} р.</strong></h6>
-                </#if>
+                <h6 class="card-title"><strong>${message.price!""} р.</strong></h6>
                 <p class="card-text mb-0"><strong class="indigo-text">${message.count_rooms!""}-к. ${message.object_type!""}</strong>
                     <strong class="black-text"> | ${message.square!""} м² | ${message.floor!""}/${message.num_storeys!""} эт.</strong></p>
                 <p class="card-text mb-0">ул. ${message.street!""} д. ${message.house!""}</p>
-                <p class="card-text"><strong class="black-text">г. ${message.city!""}</strong>
+                <p class="card-text mb-0"><strong class="black-text">г. ${message.city!""}</strong>
                     <#if message.author.id == currentUserId || isAdmin>
                         <#include "btn_edit_delete.ftl" />
                     </#if>
                 </p>
+                <p class="card-text mb-0">№: ${message.id?c!""} | ${message.post_date!""}</p>
 
             </div>
 
