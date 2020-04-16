@@ -95,7 +95,7 @@ public class UserService implements UserDetailsService {
                             "Если вы не запрашивали изменение пароля, проигнорируйте это письмо.",
                     user.getUsername(),
                     serverAddress,
-                    user.getPhone()
+                    user.getRestoreCode()
             );
 
             mailService.send(user.getEmail(), "Сброс пароля", message);
