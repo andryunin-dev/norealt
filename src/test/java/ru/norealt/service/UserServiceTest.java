@@ -101,7 +101,6 @@ class UserServiceTest {
 
     @Test
     void activateUserFailTest() {
-
         boolean isUserActivated = userService.activateUser("activate me");
 
         Assert.assertFalse(isUserActivated);
