@@ -18,10 +18,10 @@
                     <div id="slider-connect-messages"></div>
                 </div>
                 <div class="col-5 col-lg-2 col-sm-5">
-                    <input type="number" class="form-control form-control-sm" name="min" id="input-min">
+                    <input type="number" class="form-control form-control-sm" name="min" id="input-min" />
                 </div>
                 <div class="col-5 col-lg-2 col-sm-5">
-                    <input type="number" class="form-control form-control-sm" name="max" id="input-max">
+                    <input type="number" class="form-control form-control-sm" name="max" id="input-max" />
                 </div>
 
                 <#if city != " "><input type="hidden" name="city" value="${city}" /></#if>
@@ -105,11 +105,11 @@
                 Сортировать:
             </div>
             <select class="browser-default custom-select custom-select-sm" onchange="location = this.value;" id="sort-group">
-                <option data-class="0" value="?size=${size?c}&page=${page?c}&group=id&sort=desc<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>">По умолчанию</option>
-                <option data-class="1" value="?size=${size?c}&page=${page?c}&group=price&sort=asc<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" >По цене, сначала дешевые</option>
-                <option data-class="2" value="?size=${size?c}&page=${page?c}&group=price&sort=desc<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" >По цене, сначала дорогие</option>
-                <option data-class="3" value="?size=${size?c}&page=${page?c}&group=postDate&sort=asc<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" >По дате, сначала старые</option>
-                <option data-class="4" value="?size=${size?c}&page=${page?c}&group=postDate&sort=desc<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" >По дате, сначала новые</option>
+                <option data-class="0" value="?size=${size?c}&amp;page=${page?c}&amp;group=id&amp;sort=desc<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>">По умолчанию</option>
+                <option data-class="1" value="?size=${size?c}&amp;page=${page?c}&amp;group=price&amp;sort=asc<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >По цене, сначала дешевые</option>
+                <option data-class="2" value="?size=${size?c}&amp;page=${page?c}&amp;group=price&amp;sort=desc<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >По цене, сначала дорогие</option>
+                <option data-class="3" value="?size=${size?c}&amp;page=${page?c}&amp;group=postDate&amp;sort=asc<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >По дате, сначала старые</option>
+                <option data-class="4" value="?size=${size?c}&amp;page=${page?c}&amp;group=postDate&amp;sort=desc<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >По дате, сначала новые</option>
             </select>
         </div>
 
@@ -118,10 +118,10 @@
                 Город:
             </div>
             <select class="browser-default custom-select custom-select-sm" onchange="location = this.value;" id="sort-city">
-                <option data-class="0" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>">Любой</option>
-                <option data-class="1" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if>&city=Саратов<#if countRooms != " ">&countRooms=${countRooms}</#if>" >Саратов</option>
-                <option data-class="2" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if>&city=Энгельс<#if countRooms != " ">&countRooms=${countRooms}</#if>" >Энгельс</option>
-                <option data-class="3" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if>&city=Балаково<#if countRooms != " ">&countRooms=${countRooms}</#if>" >Балаково</option>
+                <option data-class="0" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>">Любой</option>
+                <option data-class="1" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if>&amp;city=Саратов<#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >Саратов</option>
+                <option data-class="2" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if>&amp;city=Энгельс<#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >Энгельс</option>
+                <option data-class="3" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if>&amp;city=Балаково<#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" >Балаково</option>
             </select>
         </div>
 
@@ -130,16 +130,16 @@
                 Квартира:
             </div>
             <select class="browser-default custom-select custom-select-sm" onchange="location = this.value;" id="sort-countRooms">
-                <option data-class="0" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>">Любая</option>
-                <option data-class="1" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=1" >1-к. квартира</option>
-                <option data-class="2" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=2" >2-к. квартира</option>
-                <option data-class="3" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=3" >3-к. квартира</option>
-                <option data-class="4" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=4" >4-к. квартира</option>
-                <option data-class="5" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=5" >5-к. квартира</option>
-                <option data-class="6" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=6" >6-к. квартира</option>
-                <option data-class="7" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=7" >7-к. квартира</option>
-                <option data-class="8" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=8" >8-к. квартира</option>
-                <option data-class="9" value="?size=${size?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if>&countRooms=9" >9-к. квартира</option>
+                <option data-class="0" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>">Любая</option>
+                <option data-class="1" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=1" >1-к. квартира</option>
+                <option data-class="2" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=2" >2-к. квартира</option>
+                <option data-class="3" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=3" >3-к. квартира</option>
+                <option data-class="4" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=4" >4-к. квартира</option>
+                <option data-class="5" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=5" >5-к. квартира</option>
+                <option data-class="6" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=6" >6-к. квартира</option>
+                <option data-class="7" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=7" >7-к. квартира</option>
+                <option data-class="8" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=8" >8-к. квартира</option>
+                <option data-class="9" value="?size=${size?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if>&amp;countRooms=9" >9-к. квартира</option>
             </select>
         </div>
 
@@ -213,46 +213,7 @@
         });
     </script>
 
-    <script type="text/javascript">
-
-        function getAllUrlParams(url) {
-
-            var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
-            var obj = {};
-            if (queryString) {
-                queryString = queryString.split('#')[0];
-                var arr = queryString.split('&');
-
-                for (var i=0; i<arr.length; i++) {
-                    var a = arr[i].split('=');
-                    var paramNum = undefined;
-                    var paramName = a[0].replace(/\[\d*\]/, function(v) {
-                        paramNum = v.slice(1,-1);
-                        return '';
-                    });
-                    var paramValue = typeof(a[1])==='undefined' ? true : a[1];
-                    paramName = paramName.toLowerCase();
-                    paramValue = paramValue.toLowerCase();
-                    if (obj[paramName]) {
-                        if (typeof obj[paramName] === 'string') {
-                            obj[paramName] = [obj[paramName]];
-                        }
-                        if (typeof paramNum === 'undefined') {
-                            obj[paramName].push(paramValue);
-                        }
-                        else {
-                            obj[paramName][paramNum] = paramValue;
-                        }
-                    }
-                    else {
-                        obj[paramName] = paramValue;
-                    }
-                }
-            }
-            return obj;
-        }
-
-    </script>
+    <script type="text/javascript" src="/static/js/getAllUrlParams.js"></script>
 
     <#include "parts/messageList.ftl" />
 

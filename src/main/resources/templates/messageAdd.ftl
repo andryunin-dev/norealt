@@ -16,7 +16,7 @@
                 </label>
                 <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 col-12">
                     <select class="browser-default custom-select custom-select-sm" name="city" id="city">
-                        <option value="Саратов" selected>Саратов</option>
+                        <option value="Саратов" selected="selected">Саратов</option>
                         <option value="Энгельс">Энгельс</option>
                         <option value="Балаково">Балаково</option>
                     </select>
@@ -31,7 +31,7 @@
                       text-xl-right text-lg-right text-md-right text-sm-left text-left">Улица
                 </label>
                 <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 col-12">
-                    <input class="form-control form-control-sm" type="text" name="street" id="street">
+                    <input class="form-control form-control-sm" type="text" name="street" id="street" />
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                       text-xl-right text-lg-right text-md-right text-sm-left text-left">Номер дома
                 </label>
                 <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3 col-4">
-                    <input class="form-control form-control-sm" type="text" name="house" id="house">
+                    <input class="form-control form-control-sm" type="text" name="house" id="house" />
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                 </label>
                 <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 col-12">
                     <select class="browser-default custom-select custom-select-sm" name="object_type" id="object_type">
-                        <option value="квартира" selected>Квартира</option>
+                        <option value="квартира" selected="selected">Квартира</option>
                     </select>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 </label>
                 <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3 col-4">
                     <select class="browser-default custom-select custom-select-sm" name="count_rooms" id="count_rooms">
-                        <option value="1" selected>1</option>
+                        <option value="1" selected="selected">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -92,7 +92,7 @@
                 </label>
                 <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-7">
                     <div class="input-group input-group-sm ">
-                        <input type="text" class="form-control" name="square" id="square">
+                        <input type="text" class="form-control" name="square" id="square" />
                         <div class="input-group-append">
                             <span class="input-group-text">м²</span>
                         </div>
@@ -109,7 +109,7 @@
                 </label>
                 <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3 col-4">
                     <select class="browser-default custom-select custom-select-sm" name="floor" id="floor">
-                        <option value="1" selected>1</option>
+                        <option value="1" selected="selected">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -162,7 +162,7 @@
                 </label>
                 <div class="col-xl-1 col-lg-1 col-md-2 col-sm-3 col-4">
                     <select class="browser-default custom-select custom-select-sm" name="num_storeys" id="num_storeys">
-                        <option value="1" selected>1</option>
+                        <option value="1" selected="selected">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -232,7 +232,7 @@
                 </label>
                 <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-7">
                     <div class="input-group input-group-sm ">
-                        <input type="number" class="form-control" name="price" id="price">
+                        <input type="number" class="form-control" name="price" id="price" />
                         <div class="input-group-append">
                             <span class="input-group-text">руб.</span>
                         </div>
@@ -249,7 +249,7 @@
                 </label>
                 <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 col-12">
                     <div class="custom-file">
-                        <input type="file" name="file" class="custom-file-input form-control-sm" id="customFileLang" lang="ru">
+                        <input type="file" name="file" class="custom-file-input form-control-sm" id="customFileLang" lang="ru" />
                         <label class="custom-file-label col-form-label-sm" for="customFileLang">Выберите файл</label>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
                         </li>
                     <#else>
                         <li class="page-item">
-                            <a class="page-link" href="${url}?size=${size?c}&page=${(p-1)?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" tabindex="-1">${p}</a>
+                            <a class="page-link" href="${url}?size=${size?c}&amp;page=${(p-1)?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" tabindex="-1">${p}</a>
                         </li>
                     </#if>
                 </#list>
@@ -50,7 +50,7 @@
                         </li>
                     <#else>
                         <li class="page-item">
-                            <a class="page-link" href="${url}?size=${c?c}&page=${page?c}&group=${group}&sort=${sort}<#if min != 0>&min=${min?c}</#if><#if max != 2000000000>&max=${max?c}</#if><#if city != " ">&city=${city}</#if><#if countRooms != " ">&countRooms=${countRooms}</#if>" tabindex="-1">${c}</a>
+                            <a class="page-link" href="${url}?size=${c?c}&amp;page=${page?c}&amp;group=${group}&amp;sort=${sort}<#if min != 0>&amp;min=${min?c}</#if><#if max != 2000000000>&amp;max=${max?c}</#if><#if city != " ">&amp;city=${city}</#if><#if countRooms != " ">&amp;countRooms=${countRooms}</#if>" tabindex="-1">${c}</a>
                         </li>
                     </#if>
                 </#list>

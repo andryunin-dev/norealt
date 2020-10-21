@@ -1,22 +1,22 @@
 <#include "security.ftl">
 
-<div class="row ">
+<div class="row" id="message-list">
     <#list messages as message>
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 ">
-        <div class="card mb-3">
+        <div class="card mb-3" data-id="${message.id?c}">
 
             <!-- Card image -->
             <div>
                 <#if message.filename?has_content>
                     <div class="view overlay">
-                        <img class="card-img-top" src="/img/${message.filename}" width="100%">
+                        <img class="card-img-top" src="/img/${message.filename}" width="100%" />
                         <a href="/message/${message.id?c}">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
                 <#else>
                     <div class="view overlay">
-                        <img class="card-img-top" src="/static/img/cam.jpg" width="100%">
+                        <img class="card-img-top" src="/static/img/cam.jpg" width="100%" />
                         <a href="/message/${message.id?c}">
                             <div class="mask rgba-white-slight"></div>
                         </a>
